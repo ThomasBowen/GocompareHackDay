@@ -20,10 +20,15 @@ namespace TestApp.ViewModels
         public AboutViewModel()
         {
             Title = "GocompAR";
-            OpenWebCommand = new Command(async () => ScanButtonText = await GetQuote());
+            OpenWebCommand = new Command(async () => ScanButtonText = await Scan());
         }
 
         public ICommand OpenWebCommand { get; }
+
+        private async Task<string> Scan()
+        {
+            return "";
+        }
 
         private async Task<string> GetQuote()
         {
