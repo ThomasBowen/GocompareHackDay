@@ -67,6 +67,7 @@
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
+    <Compile Include="PhotoPickerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -147,5 +148,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\app_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\reg.jpg" />
   </ItemGroup>
 </Project>

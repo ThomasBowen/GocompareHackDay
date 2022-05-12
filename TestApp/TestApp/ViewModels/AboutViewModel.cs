@@ -35,7 +35,9 @@ namespace TestApp.ViewModels
 
         private async Task<string> GetQuote()
         {
-            var reg = "BV67EOZ";
+            //var reg = "BV67EOZ";
+
+            var reg = (await CognitiveService.GetRegFromImage()).Replace(" ","");
 
             var vehicleService = new VehicleService();
 
