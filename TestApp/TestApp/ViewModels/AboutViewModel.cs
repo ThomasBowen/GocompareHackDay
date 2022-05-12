@@ -63,11 +63,11 @@ namespace TestApp.ViewModels
             quoteRequest.vehicle.abiCode = vehicle.abiCode;
             //quoteRequest.vehicle.numberOfDoors = vehicle.numberOfDoors;
             quoteRequest.vehicle.noOfSeats = vehicle.numberOfSeats;
-            quoteRequest.vehicle.transmissionId = vehicle.transmissionType == "Manual" ? 333 : 334;
+            //quoteRequest.vehicle.transmissionId = vehicle.transmissionType == "Manual" ? 333 : 334;
             quoteRequest.vehicle.transmissionId = vehicle.transmissionId;
             quoteRequest.vehicle.yearOfManufacture = vehicle.yearOfManufacture;
             quoteRequest.vehicle.vehicleValue = vehicle.auctionSale;
-            quoteRequest.vehicle.grossWeight = double.Parse(vehicle.grossWeight.ToString());
+            //quoteRequest.vehicle.grossWeight = double.Parse(vehicle.grossWeight.ToString());
             quoteRequest.vehicle.payload = vehicle.payload;
             quoteRequest.vehicle.modelDescription = vehicle.description;
             quoteRequest.vehicle.manufacturedFrom = vehicle.manufacturedFrom;
@@ -77,7 +77,7 @@ namespace TestApp.ViewModels
             quoteRequest.vehicle.engineCc = vehicle.engineCc;
             //quoteRequest.vehicle.fuelType = vehicle.fuelType;
             //quoteRequest.vehicle.vehicleType = vehicle.vehicleType;
-            quoteRequest.vehicle.securityId = vehicle.securityId;
+            //quoteRequest.vehicle.securityId = vehicle.securityId;
             //quoteRequest.vehicle.alarmImmobiliserCode = vehicle.alarmImmobiliserCode;
         }
     }
