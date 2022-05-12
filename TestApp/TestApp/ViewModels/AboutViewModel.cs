@@ -21,9 +21,12 @@ namespace TestApp.ViewModels
         {
             Title = "GocompAR";
             OpenWebCommand = new Command(async () => ScanButtonText = await Scan());
+            GetQuoteCommand = new Command(async () => ScanButtonText = await GetQuote());
         }
 
         public ICommand OpenWebCommand { get; }
+
+        public ICommand GetQuoteCommand { get; }
 
         private async Task<string> Scan()
         {
@@ -32,19 +35,50 @@ namespace TestApp.ViewModels
 
         private async Task<string> GetQuote()
         {
+            var reg = "BV67EOZ";
+
+            var vehicleService = new VehicleService();
+
+            var vehicle = await vehicleService.GetVehicle(reg);
+
             var quoteService = new QuoteService();
 
             var quote = await quoteService.GetQuote();
 
-            var questRequest = new ProcessQuoteRequest(quote);
+            var quoteRequest = new ProcessQuoteRequest(quote);
 
-            questRequest.quoteRequest.sessionId = Guid.NewGuid().ToString();
+            quoteRequest.quoteRequest.sessionId = Guid.NewGuid().ToString();
 
-            var quoteRequestID = await quoteService.SubmitQuote(questRequest);
+            MapVehicle(quoteRequest, vehicle);
+
+            var quoteRequestID = await quoteService.SubmitQuote(quoteRequest);
 
             var results = await quoteService.GetResults(quoteRequestID);
 
             return results;
+        }
+
+        private void MapVehicle(ProcessQuoteRequest quoteRequest, VehicleModel vehicle)
+        {
+            quoteRequest.vehicle.abiCode = vehicle.abiCode;
+            //quoteRequest.vehicle.numberOfDoors = vehicle.numberOfDoors;
+            quoteRequest.vehicle.noOfSeats = vehicle.numberOfSeats;
+            quoteRequest.vehicle.transmissionId = vehicle.transmissionType == "Manual" ? 333 : 334;
+            quoteRequest.vehicle.transmissionId = vehicle.transmissionId;
+            quoteRequest.vehicle.yearOfManufacture = vehicle.yearOfManufacture;
+            quoteRequest.vehicle.vehicleValue = vehicle.auctionSale;
+            quoteRequest.vehicle.grossWeight = double.Parse(vehicle.grossWeight.ToString());
+            quoteRequest.vehicle.payload = vehicle.payload;
+            quoteRequest.vehicle.modelDescription = vehicle.description;
+            quoteRequest.vehicle.manufacturedFrom = vehicle.manufacturedFrom;
+            quoteRequest.vehicle.manufacturedTo = vehicle.manufacturedTo;
+            quoteRequest.vehicle.makeDescription = vehicle.makeDescription;
+            quoteRequest.vehicle.modelDescription = vehicle.modelDescription;
+            quoteRequest.vehicle.engineCc = vehicle.engineCc;
+            //quoteRequest.vehicle.fuelType = vehicle.fuelType;
+            //quoteRequest.vehicle.vehicleType = vehicle.vehicleType;
+            quoteRequest.vehicle.securityId = vehicle.securityId;
+            //quoteRequest.vehicle.alarmImmobiliserCode = vehicle.alarmImmobiliserCode;
         }
     }
 }
