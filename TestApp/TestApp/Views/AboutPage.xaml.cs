@@ -1,7 +1,5 @@
-﻿using System;
-using System.ComponentModel;
+﻿using TestApp.Services;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace TestApp.Views
 {
@@ -10,6 +8,17 @@ namespace TestApp.Views
         public AboutPage()
         {
             InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            //var quoteService = new QuoteService();
+
+            //var quote = await quoteService.GetQuote();
+
+            //var quoteRequestID = await quoteService.SubmitQuote(quote);
+
+            //var results = await quoteService.GetResults(quoteRequestID);
         }
     }
 }

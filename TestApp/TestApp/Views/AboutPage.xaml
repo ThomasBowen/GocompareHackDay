@@ -41,10 +41,11 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Margin="0,10,0,0" Text="Hi Farmer"
+                <Button x:Name="QuoteButton" Margin="0,10,0,0" Text="Scan"
                         Command="{Binding OpenWebCommand}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
+                <Label x:Name="QuoteText" Text="Loading Quote..."></Label>
             </StackLayout>
         </ScrollView>
     </Grid>
